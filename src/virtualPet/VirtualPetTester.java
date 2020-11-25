@@ -17,12 +17,15 @@ public class VirtualPetTester {
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        VirtualPet[] pets = generatePets(promptPetAmount());
+        loop();
     }
 
     public static void loop() {
+        VirtualPet[] pets = generatePets(promptPetAmount());
+
         switch (promptAction()) {
             case 1:
+                printStatus(pets);
                 break;
             case 2:
                 break;
@@ -90,6 +93,30 @@ public class VirtualPetTester {
             }
             System.out.println();
             return action;
+        }
+    }
+
+    /**
+     * Return pet's stats as a formatted string. (1)(1)(3)(1)(a).
+     *
+     * @param pet The pet instance.
+     * @return A formatted string that represents a pet's energy and happiness.
+     */
+    private static String plainStatus(VirtualPet pet) {
+        return String.format("Energy: %d. Happiness: %d.", pet.getEnergy(), pet.getHappiness());
+    }
+
+    /**
+     * Print the statuses of the pets. (1)(1)(3)(1)(b).
+     * <p>
+     * In addition to the requirement, this method adds the name of the pet at
+     * the start of the string to make the output clearer.
+     *
+     * @param pets The array of pets.
+     */
+    private static void printStatus(VirtualPet[] pets) {
+        for (VirtualPet pet : pets) {
+            System.out.printf("[%s] %s%n", pet.getName(), plainStatus(pet));
         }
     }
 }
