@@ -29,7 +29,7 @@ public class VirtualPetTester {
         while (true) {
             System.out.print("Enter the amount of virtual pets to create: ");
             int amt = scan.nextInt();
-            if (amt > 0) {
+            if (amt <= 0) {
                 System.out.println("Invalid amount. Must be at least one.");
                 continue;
             }
