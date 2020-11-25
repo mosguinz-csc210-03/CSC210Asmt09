@@ -12,10 +12,16 @@ package virtualPet;
 
 public class VirtualPet {
 
+    /* Starting stats */
+    public static final int BASE_HAPPINESS = 25;
+    public static final int BASE_ENERGY = 25;
+
+    /* Restrictions */
     private static final int MAX_NAME_LENGTH = 30;
     private static final int MAX_FEED_ENERGY = 80;
     private static final int MAX_PLAY_ENERGY = 30;
 
+    /* Action deltas */
     private static final int FEED_HAPPINESS_DELTA = +5;
     private static final int FEED_ENERGY_DELTA = +30;
     private static final int PLAY_HAPPINESS_DELTA = +20;
@@ -23,8 +29,8 @@ public class VirtualPet {
 
     /* Part (1)(2)(i) */
     private String name;
-    private int happiness = 25;
-    private int energy = 25;
+    private int happiness = BASE_HAPPINESS;
+    private int energy = BASE_ENERGY;
 
     public VirtualPet() {
         this.name = "DEFAULT";
