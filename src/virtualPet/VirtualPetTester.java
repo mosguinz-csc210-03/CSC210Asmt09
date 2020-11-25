@@ -20,8 +20,22 @@ public class VirtualPetTester {
         VirtualPet[] pets = generatePets(promptPetAmount());
     }
 
+    public static void loop() {
+        switch (promptAction()) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                //exit
+                return;
+        }
+    }
+
     /**
-     * Prompt user for amount of pets to create. (1)(1)(a)-(b).
+     * Prompt user for amount of pets to create. (1)(1)(1)(a)-(b).
      *
      * @return A valid amount of pets to create.
      */
@@ -39,7 +53,7 @@ public class VirtualPetTester {
     }
 
     /**
-     * Generate an array of pets from the given amount. (1)(1)(c).
+     * Generate an array of pets from the given amount. (1)(1)(1)(c).
      * <p>
      * Prompts user for the name of each pets.
      *
@@ -56,7 +70,7 @@ public class VirtualPetTester {
     }
 
     /**
-     * Prompt user for a menu option.
+     * Prompt user for a menu option. (1)(1)(2).
      *
      * @return An integer corresponding to a valid menu option.
      */
