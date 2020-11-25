@@ -23,19 +23,21 @@ public class VirtualPetTester {
     public static void loop() {
         VirtualPet[] pets = generatePets(promptPetAmount());
 
-        switch (promptAction()) {
-            case 1:
-                printStatus(pets);
-                break;
-            case 3:
-                feedAllPets(pets);
-                break;
-            case 2:
-                playAllPets(pets);
-                break;
-            case 4:
-                displaySummary(pets);
-                return;
+        while (true) {
+            switch (promptAction()) {
+                case 1:
+                    printStatus(pets);
+                    break;
+                case 3:
+                    feedAllPets(pets);
+                    break;
+                case 2:
+                    playAllPets(pets);
+                    break;
+                case 4:
+                    displaySummary(pets);
+                    return;
+            }
         }
     }
 
