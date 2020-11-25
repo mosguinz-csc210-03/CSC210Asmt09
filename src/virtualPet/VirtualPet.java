@@ -71,7 +71,7 @@ public class VirtualPet {
     }
 
     /**
-     * Play with the pet. Increases happiness and energy.
+     * Play with the pet. Increases happiness and decreases energy.
      * <p>
      * Pet's {@link #energy} must be strictly less than {@link #MAX_PLAY_ENERGY}
      * for the action to be effective.
