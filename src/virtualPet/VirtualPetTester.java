@@ -39,7 +39,7 @@ public class VirtualPetTester {
     }
 
     /**
-     * Generate an array of pets from the given amount.
+     * Generate an array of pets from the given amount. (1)(1)(c).
      * <p>
      * Prompts user for the name of each pets.
      *
