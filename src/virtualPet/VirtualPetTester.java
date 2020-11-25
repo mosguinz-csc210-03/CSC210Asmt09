@@ -34,7 +34,7 @@ public class VirtualPetTester {
                 playAllPets(pets);
                 break;
             case 4:
-                //exit
+                displaySummary(pets);
                 return;
         }
     }
@@ -151,6 +151,39 @@ public class VirtualPetTester {
             System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
             pet.play();
             System.out.printf("  ->  %s%n", plainStatus(pet));
+        }
+    }
+
+    /**
+     * Get the mean stats for all of the pets in the array.
+     * <p>
+     * Takes the average of all the pets' mean energy and happiness score.
+     *
+     * @param pets The array of pets.
+     * @return Mean value of all the pets' stats.
+     */
+    private static double getMeanStats(VirtualPet[] pets) {
+        double sum = 0;
+        for (VirtualPet pet : pets) {
+            sum += (pet.getEnergy() + pet.getHappiness()) / 2.0;
+        }
+        return sum / pets.length;
+    }
+
+    private static void displaySummary(VirtualPet[] pets) {
+        double baseAvg = (VirtualPet.BASE_ENERGY + VirtualPet.BASE_HAPPINESS) / 2.0;
+        double userAvg = getMeanStats(pets);
+
+        System.out.println("Here are your pet's stats.");
+        printStatus(pets);
+
+        if (userAvg < baseAvg) {
+            System.out.print("Please do not buy a pet...");
+            if (pets.length > 1) {
+                System.out.printf(" let alone %d of them.", pets.length);
+            }
+        } else {
+            System.out.println("Well done! Your pets seems to be happy on average.");
         }
     }
 }
