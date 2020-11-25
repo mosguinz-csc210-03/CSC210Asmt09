@@ -27,9 +27,11 @@ public class VirtualPetTester {
             case 1:
                 printStatus(pets);
                 break;
-            case 2:
-                break;
             case 3:
+                feedAllPets(pets);
+                break;
+            case 2:
+                playAllPets(pets);
                 break;
             case 4:
                 //exit
@@ -117,6 +119,38 @@ public class VirtualPetTester {
     private static void printStatus(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
             System.out.printf("[%s] %s%n", pet.getName(), plainStatus(pet));
+        }
+    }
+
+    /**
+     * Attempt to feed all pets in the given array. (1)(1)(3)(2).
+     * <p>
+     * Pets that cannot be fed will remain unchanged. Prints the stats of each
+     * pet before and after feeding.
+     *
+     * @param pets The array of pets.
+     */
+    private static void feedAllPets(VirtualPet[] pets) {
+        for (VirtualPet pet : pets) {
+            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            pet.feed();
+            System.out.printf("  ->  %s%n", plainStatus(pet));
+        }
+    }
+
+    /**
+     * Attempt to play with all pets in the given array. (1)(1)(3)(3).
+     * <p>
+     * Pets that cannot be played with will remain unchanged. Prints the stats
+     * of each pet before and after playing.
+     *
+     * @param pets The array of pets.
+     */
+    private static void playAllPets(VirtualPet[] pets) {
+        for (VirtualPet pet : pets) {
+            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            pet.play();
+            System.out.printf("  ->  %s%n", plainStatus(pet));
         }
     }
 }
