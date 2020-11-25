@@ -15,25 +15,19 @@ public class VirtualPet {
     private static final int MAX_NAME_LENGTH = 30;
     /* Part (1)(2)(i) */
     private String name;
-    private int happiness;
-    private int energy;
+    private int happiness = 25;
+    private int energy = 25;
 
     public VirtualPet() {
         this.name = "DEFAULT";
-        setStartingValues();
     }
 
     public VirtualPet(String name) {
         setName(name);
-        setStartingValues();
     }
 
-    public void setHappiness(int happiness) {
-        this.happiness = happiness;
-    }
-
-    public void setEnergy(int energy) {
-        this.energy = energy;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -44,10 +38,20 @@ public class VirtualPet {
         this.name = name;
     }
 
-    /**
-     * Set the starting values for the instance. Supplemental to (1)(2)(ii).
-     */
-    private void setStartingValues() {
-        happiness = energy = 25;
+    public int getHappiness() {
+        return happiness;
     }
+
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
 }
