@@ -16,6 +16,11 @@ public class VirtualPet {
     private static final int MAX_FEED_ENERGY = 80;
     private static final int MAX_PLAY_ENERGY = 30;
 
+    private static final int FEED_HAPPINESS_DELTA = +5;
+    private static final int FEED_ENERGY_DELTA = +30;
+    private static final int PLAY_HAPPINESS_DELTA = +20;
+    private static final int PLAY_ENERGY_DELTA = -15;
+
     /* Part (1)(2)(i) */
     private String name;
     private int happiness = 25;
@@ -65,8 +70,8 @@ public class VirtualPet {
      */
     public void feed() {
         if (energy < MAX_FEED_ENERGY) {
-            happiness += 5;
-            energy += 30;
+            happiness += FEED_HAPPINESS_DELTA;
+            energy += FEED_ENERGY_DELTA;
         }
     }
 
@@ -78,8 +83,8 @@ public class VirtualPet {
      */
     public void play() {
         if (energy < MAX_PLAY_ENERGY) {
-            happiness += 20;
-            energy -= 30;
+            happiness += PLAY_HAPPINESS_DELTA;
+            energy -= PLAY_ENERGY_DELTA;
         }
     }
 
