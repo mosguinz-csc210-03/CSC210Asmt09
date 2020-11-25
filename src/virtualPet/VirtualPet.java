@@ -84,7 +84,7 @@ public class VirtualPet {
     public void play() {
         if (energy < MAX_PLAY_ENERGY) {
             happiness += PLAY_HAPPINESS_DELTA;
-            energy -= PLAY_ENERGY_DELTA;
+            energy += PLAY_ENERGY_DELTA;
         }
     }
 
