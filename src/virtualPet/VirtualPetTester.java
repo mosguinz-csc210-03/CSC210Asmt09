@@ -17,7 +17,7 @@ public class VirtualPetTester {
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        promptPetAmount();
+        VirtualPet[] pets = generatePets(promptPetAmount());
     }
 
     /**
@@ -36,5 +36,22 @@ public class VirtualPetTester {
             scan.nextLine();
             return amt;
         }
+    }
+
+    /**
+     * Generate an array of pets from the given amount.
+     * <p>
+     * Prompts user for the name of each pets.
+     *
+     * @param amt The valid amount of pets to generate.
+     * @return The array of pets.
+     */
+    private static VirtualPet[] generatePets(int amt) {
+        VirtualPet[] pets = new VirtualPet[amt];
+        for (int i = 0; i < amt; i++) {
+            System.out.printf("Enter the name for pet #%d: ", i + 1);
+            pets[i] = new VirtualPet(scan.nextLine());
+        }
+        return pets;
     }
 }
