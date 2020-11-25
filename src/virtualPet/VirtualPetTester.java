@@ -170,6 +170,14 @@ public class VirtualPetTester {
         return sum / pets.length;
     }
 
+    /**
+     * Display the users' pet summary.
+     * <p>
+     * Uses the mean pet stats to output messages according to the users'
+     * performance.
+     *
+     * @param pets The array of pets
+     */
     private static void displaySummary(VirtualPet[] pets) {
         double baseAvg = (VirtualPet.BASE_ENERGY + VirtualPet.BASE_HAPPINESS) / 2.0;
         double userAvg = getMeanStats(pets);
