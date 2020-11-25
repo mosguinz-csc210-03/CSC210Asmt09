@@ -54,4 +54,28 @@ public class VirtualPetTester {
         }
         return pets;
     }
+
+    /**
+     * Prompt user for a menu option.
+     *
+     * @return An integer corresponding to a valid menu option.
+     */
+    private static int promptAction() {
+        int action;
+        while (true) {
+            System.out.println("\nChoose a number from the following menu:");
+            System.out.println("1. Check statuses");
+            System.out.println("2. Feed your virtual pet");
+            System.out.println("3. Play with your virtual pet");
+            System.out.println("4. End program");
+            System.out.print(">>> ");
+            action = scan.nextInt();
+            if (action < 1 || action > 4) {
+                System.out.println("\nInvalid selection. Please enter a valid option.");
+                continue;
+            }
+            System.out.println();
+            return action;
+        }
+    }
 }
