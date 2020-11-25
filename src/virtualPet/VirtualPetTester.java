@@ -20,6 +20,9 @@ public class VirtualPetTester {
         loop();
     }
 
+    /**
+     * Run the program's execution loop.
+     */
     public static void loop() {
         VirtualPet[] pets = generatePets(promptPetAmount());
 
@@ -157,7 +160,7 @@ public class VirtualPetTester {
     }
 
     /**
-     * Get the mean stats for all of the pets in the array.
+     * Get the mean stats for all of the pets in the array. (1)(1)(3)(4).
      * <p>
      * Takes the average of all the pets' mean energy and happiness score.
      *
