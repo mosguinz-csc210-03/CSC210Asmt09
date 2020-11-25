@@ -13,6 +13,9 @@ package virtualPet;
 public class VirtualPet {
 
     private static final int MAX_NAME_LENGTH = 30;
+    private static final int MAX_FEED_ENERGY = 80;
+    private static final int MAX_PLAY_ENERGY = 30;
+
     /* Part (1)(2)(i) */
     private String name;
     private int happiness = 25;
@@ -52,6 +55,32 @@ public class VirtualPet {
 
     public void setEnergy(int energy) {
         this.energy = energy;
+    }
+
+    /**
+     * Feed the pet. Increases happiness and energy.
+     * <p>
+     * Pet's {@link #energy} must be strictly less than {@link #MAX_FEED_ENERGY}
+     * for the action to be effective.
+     */
+    public void feed() {
+        if (energy < MAX_FEED_ENERGY) {
+            happiness += 5;
+            energy += 30;
+        }
+    }
+
+    /**
+     * Play with the pet. Increases happiness and energy.
+     * <p>
+     * Pet's {@link #energy} must be strictly less than {@link #MAX_PLAY_ENERGY}
+     * for the action to be effective.
+     */
+    public void play() {
+        if (energy < MAX_PLAY_ENERGY) {
+            happiness += 20;
+            energy -= 30;
+        }
     }
 
 }
