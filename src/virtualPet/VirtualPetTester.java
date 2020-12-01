@@ -16,6 +16,8 @@ public class VirtualPetTester {
 
     public static final Scanner scan = new Scanner(System.in);
     public static final String PET_TYPE = promptPetType();
+    private static final String FEED_TYPE = getFeedType();
+    private static final String PLAY_TYPE = getPlayType();
 
     public static void main(String[] args) {
         loop();
@@ -64,7 +66,7 @@ public class VirtualPetTester {
      */
     private static int promptPetAmount() {
         while (true) {
-            System.out.print("Enter the amount of virtual pets to create: ");
+            System.out.printf("Enter the amount of virtual %ss to create: ", PET_TYPE);
             int amt = scan.nextInt();
             if (amt <= 0) {
                 System.out.println("Invalid amount. Must be at least one.");
@@ -86,10 +88,36 @@ public class VirtualPetTester {
     private static VirtualPet[] generatePets(int amt) {
         VirtualPet[] pets = new VirtualPet[amt];
         for (int i = 0; i < amt; i++) {
-            System.out.printf("Enter the name for pet #%d: ", i + 1);
+            System.out.printf("Enter the name for %s #%d: ", PET_TYPE, i + 1);
             pets[i] = new VirtualPet(scan.nextLine());
         }
         return pets;
+    }
+
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for feeding according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getFeedType() {
+        if (PET_TYPE.equals("pet")) return "Feed";
+        return "Water";
+    }
+
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for playing according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getPlayType() {
+        if (PET_TYPE.equals("pet")) return "Play";
+        return "Talk";
     }
 
     /**
@@ -98,15 +126,14 @@ public class VirtualPetTester {
      * @return An integer corresponding to a valid menu option.
      */
     private static int promptAction() {
-        int action;
         while (true) {
             System.out.println("\nChoose a number from the following menu:");
             System.out.println("1. Check statuses");
-            System.out.println("2. Feed your virtual pet");
-            System.out.println("3. Play with your virtual pet");
+            System.out.printf("2. %s your virtual %s%n", FEED_TYPE, PET_TYPE);
+            System.out.printf("3. %s with your virtual %s%n", PLAY_TYPE, PET_TYPE);
             System.out.println("4. End program");
             System.out.print(">>> ");
-            action = scan.nextInt();
+            int action = scan.nextInt();
             if (action < 1 || action > 4) {
                 System.out.println("\nInvalid selection. Please enter a valid option.");
                 continue;
