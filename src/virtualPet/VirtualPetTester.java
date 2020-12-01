@@ -29,7 +29,7 @@ public class VirtualPetTester {
         while (true) {
             switch (promptAction()) {
                 case 1:
-                    printStatus(pets);
+                    printAllStatuses(pets);
                     break;
                 case 3:
                     feedAllPets(pets);
@@ -104,16 +104,6 @@ public class VirtualPetTester {
     }
 
     /**
-     * Return pet's stats as a formatted string. (1)(1)(3)(1)(a).
-     *
-     * @param pet The pet instance.
-     * @return A formatted string that represents a pet's energy and happiness.
-     */
-    private static String plainStatus(VirtualPet pet) {
-        return String.format("Energy: %d. Happiness: %d.", pet.getEnergy(), pet.getHappiness());
-    }
-
-    /**
      * Print the statuses of the pets. (1)(1)(3)(1)(b).
      * <p>
      * In addition to the requirement, this method adds the name of the pet at
@@ -121,9 +111,9 @@ public class VirtualPetTester {
      *
      * @param pets The array of pets.
      */
-    private static void printStatus(VirtualPet[] pets) {
+    private static void printAllStatuses(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s%n", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s%n", pet.getName(), pet.plainStatus());
         }
     }
 
@@ -137,9 +127,9 @@ public class VirtualPetTester {
      */
     private static void feedAllPets(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s", pet.getName(), pet.plainStatus());
             pet.feed();
-            System.out.printf("  ->  %s%n", plainStatus(pet));
+            System.out.printf("  ->  %s%n", pet.plainStatus());
         }
     }
 
@@ -153,9 +143,9 @@ public class VirtualPetTester {
      */
     private static void playAllPets(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s", pet.getName(), pet.plainStatus());
             pet.play();
-            System.out.printf("  ->  %s%n", plainStatus(pet));
+            System.out.printf("  ->  %s%n", pet.plainStatus());
         }
     }
 
@@ -188,7 +178,7 @@ public class VirtualPetTester {
         double userAvg = getMeanStats(pets);
 
         System.out.println("Here are your pet's stats.");
-        printStatus(pets);
+        printAllStatuses(pets);
 
         if (userAvg < baseAvg) {
             System.out.print("Please do not buy a pet...");
