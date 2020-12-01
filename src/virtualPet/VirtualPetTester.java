@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class VirtualPetTester {
 
     public static Scanner scan = new Scanner(System.in);
+    public static final String PET_TYPE = promptPetType();
 
     public static void main(String[] args) {
         loop();
@@ -37,6 +38,23 @@ public class VirtualPetTester {
                     return;
                 }
             }
+        }
+    }
+
+    /**
+     * Prompt user for a pet type. (2)(2)(b).
+     *
+     * @return The string that is the pet type. Either "pet" or "plant".
+     */
+    private static String promptPetType() {
+        while (true) {
+            System.out.print("Enter [1] to create animal pets or [2] to create plant pets: ");
+            int petType = scan.nextInt();
+            scan.nextLine();
+            if (petType == 1) return "pet";
+            if (petType == 2) return "plant";
+            System.out.println("Invalid type. Must be either [1] or [2].");
+            continue;
         }
     }
 
