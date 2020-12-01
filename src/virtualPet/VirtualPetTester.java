@@ -246,16 +246,16 @@ public class VirtualPetTester {
         double baseAvg = (VirtualPet.BASE_ENERGY + VirtualPet.BASE_HAPPINESS) / 2.0;
         double userAvg = getMeanStats(pets);
 
-        System.out.println("Here are your pet's stats.");
+        System.out.printf("Here are your %ss' stats.%n", PET_TYPE);
         printAllStatuses(pets);
 
         if (userAvg < baseAvg) {
-            System.out.print("Please do not buy a pet...");
+            System.out.printf("Please do not buy a %s...", PET_TYPE);
             if (pets.length > 1) {
                 System.out.printf(" let alone %d of them.", pets.length);
             }
         } else {
-            System.out.println("Well done! Your pets seems to be happy on average.");
+            System.out.printf("Well done! Your %ss seems to be happy on average.%n", PET_TYPE);
         }
     }
 }
