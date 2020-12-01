@@ -100,7 +100,7 @@ public class VirtualPet {
      *
      * @return A formatted string that represents a pet's energy and happiness.
      */
-    private String plainStatus() {
+    public String plainStatus() {
         return String.format("Energy: %d. Happiness: %d.", energy, happiness);
     }
 
