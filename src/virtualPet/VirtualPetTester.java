@@ -33,6 +33,11 @@ public class VirtualPetTester {
      * VirtualPet}. Subsequently, it can also utilize the methods that accepts
      * the same type of array. So, no overloading needed for the methods invoked
      * in the action menu.
+     * <p>
+     * {@link #PET_TYPE} is a {@code final} variable that dictates the type of
+     * pet to create. It controls whether to instantiate pets using the {@link
+     * VirtualPet#VirtualPet(String)} or the {@link VirtualPlant#VirtualPlant(String,
+     * String)} constructor.
      */
     public static void loop() {
         VirtualPet[] pets;
