@@ -21,7 +21,8 @@ public class VirtualPetTester {
     }
 
     /**
-     * Run the program's execution loop.
+     * Run the program's execution loop. Satisfies line limit requirement in
+     * (1)(1). Also meets loop requirement for (1)(1)(4).
      */
     public static void loop() {
         VirtualPet[] pets = generatePets(promptPetAmount());

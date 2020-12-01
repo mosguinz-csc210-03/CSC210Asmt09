@@ -32,7 +32,7 @@ public class VirtualPlant extends VirtualPet {
     }
 
     /**
-     * Return plant's stats as a formatted string. (1)(1)(3)(1).
+     * Return plant's stats as a formatted string. (1)(1)(3)(1) and (2)(1)(d).
      * <p>
      * Clarified in lecture that overriding either {@link
      * VirtualPet#plainStatus()} or {@link VirtualPet#printStatus()} is
