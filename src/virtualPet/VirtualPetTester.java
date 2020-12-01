@@ -35,10 +35,9 @@ public class VirtualPetTester {
      * in the action menu.
      */
     public static void loop() {
-        VirtualPet[] pets = switch (PET_TYPE) {
-            case "pet" -> generatePets(promptPetAmount());
-            default -> generatePlants(promptPetAmount());
-        };
+        VirtualPet[] pets;
+        if ("pet".equals(PET_TYPE)) pets = generatePets(promptPetAmount());
+        else pets = generatePlants(promptPetAmount());
 
         while (true) {
             switch (promptAction()) {
