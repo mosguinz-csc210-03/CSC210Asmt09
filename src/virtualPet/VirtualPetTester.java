@@ -26,9 +26,19 @@ public class VirtualPetTester {
     /**
      * Run the program's execution loop. Satisfies line limit requirement in
      * (1)(1). Also meets loop requirement for (1)(1)(4).
+     * <p>
+     * <b>Note for (2)(2)(b):</b>
+     * Since {@link VirtualPlant} is a subclass of {@link VirtualPet}, instances
+     * of {@link VirtualPlant} can be stored in the same array as {@link
+     * VirtualPet}. Subsequently, it can also utilize the methods that accepts
+     * the same type of array. So, no overloading needed for the methods invoked
+     * in the action menu.
      */
     public static void loop() {
-        VirtualPet[] pets = generatePets(promptPetAmount());
+        VirtualPet[] pets = switch (PET_TYPE) {
+            case "pet" -> generatePets(promptPetAmount());
+            default -> generatePlants(promptPetAmount());
+        };
 
         while (true) {
             switch (promptAction()) {
@@ -90,6 +100,26 @@ public class VirtualPetTester {
         for (int i = 0; i < amt; i++) {
             System.out.printf("Enter the name for %s #%d: ", PET_TYPE, i + 1);
             pets[i] = new VirtualPet(scan.nextLine());
+        }
+        return pets;
+    }
+
+    /**
+     * Generate an array of plants from the given amount. (2)(2)(a).
+     * <p>
+     * Prompts user for the name and type of each plant.
+     *
+     * @param amt The valid amount of plants to generate.
+     * @return The array of plants.
+     */
+    private static VirtualPlant[] generatePlants(int amt) {
+        VirtualPlant[] pets = new VirtualPlant[amt];
+        for (int i = 0; i < amt; i++) {
+            System.out.printf("Enter the name for %s #%d: ", PET_TYPE, i + 1);
+            String name = scan.nextLine();
+            System.out.printf("Enter the type for %s #%d: ", PET_TYPE, i + 1);
+            String type = scan.nextLine();
+            pets[i] = new VirtualPlant(name, type);
         }
         return pets;
     }
