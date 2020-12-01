@@ -13,7 +13,7 @@ package virtualPet;
 public class VirtualPlant extends VirtualPet {
 
     /* (2)(1)(a) */
-    private final String plantType;
+    private String plantType;
 
     /* (2)(1)(b) */
     public VirtualPlant(String name, String plantType) {
@@ -24,6 +24,11 @@ public class VirtualPlant extends VirtualPet {
     /* (2)(1)(c) */
     public String getPlantType() {
         return plantType;
+    }
+
+    /* (2)(1)(c) */
+    public void setPlantType(String plantType) {
+        this.plantType = plantType;
     }
 
     /**
