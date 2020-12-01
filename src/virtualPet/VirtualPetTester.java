@@ -14,34 +14,84 @@ import java.util.Scanner;
 
 public class VirtualPetTester {
 
-    public static Scanner scan = new Scanner(System.in);
+    public static final Scanner scan = new Scanner(System.in);
+    public static final String PET_TYPE = promptPetType();
+    private static final String FEED_TYPE = getFeedType();
+    private static final String PLAY_TYPE = getPlayType();
 
     public static void main(String[] args) {
         loop();
     }
 
     /**
-     * Run the program's execution loop.
+     * Run the program's execution loop. Satisfies line limit requirement in
+     * (1)(1). Also meets loop requirement for (1)(1)(4).
+     * <p>
+     * <b>Note for (2)(2)(b):</b>
+     * Since {@link VirtualPlant} is a subclass of {@link VirtualPet}, instances
+     * of {@link VirtualPlant} can be stored in the same array as {@link
+     * VirtualPet}. Subsequently, it can also utilize the methods that accepts
+     * the same type of array. So, no overloading needed for the methods invoked
+     * in the action menu.
      */
     public static void loop() {
-        VirtualPet[] pets = generatePets(promptPetAmount());
+        VirtualPet[] pets;
+        if ("pet".equals(PET_TYPE)) pets = generatePets(promptPetAmount());
+        else pets = generatePlants(promptPetAmount());
 
         while (true) {
             switch (promptAction()) {
-                case 1:
-                    printStatus(pets);
-                    break;
-                case 3:
-                    feedAllPets(pets);
-                    break;
-                case 2:
-                    playAllPets(pets);
-                    break;
-                case 4:
+                case 1 -> printAllStatuses(pets);
+                case 3 -> feedAllPets(pets);
+                case 2 -> playAllPets(pets);
+                case 4 -> {
                     displaySummary(pets);
                     return;
+                }
             }
         }
+    }
+
+    /**
+     * Prompt user for a pet type. (2)(2)(b).
+     * <p>
+     * This defines the pets' attributes and its action types.
+     *
+     * @return The string that is the pet type. Either "pet" or "plant".
+     */
+    private static String promptPetType() {
+        while (true) {
+            System.out.print("Enter [1] to create animal pets or [2] to create plant pets: ");
+            int petType = scan.nextInt();
+            scan.nextLine();
+            if (petType == 1) return "pet";
+            if (petType == 2) return "plant";
+            System.out.println("Invalid type. Must be either [1] or [2].");
+        }
+    }
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for feeding according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getFeedType() {
+        if (PET_TYPE.equals("pet")) return "Feed";
+        return "Water";
+    }
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for playing according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getPlayType() {
+        if (PET_TYPE.equals("pet")) return "Play";
+        return "Talk";
     }
 
     /**
@@ -51,7 +101,7 @@ public class VirtualPetTester {
      */
     private static int promptPetAmount() {
         while (true) {
-            System.out.print("Enter the amount of virtual pets to create: ");
+            System.out.printf("Enter the amount of virtual %ss to create: ", PET_TYPE);
             int amt = scan.nextInt();
             if (amt <= 0) {
                 System.out.println("Invalid amount. Must be at least one.");
@@ -73,8 +123,28 @@ public class VirtualPetTester {
     private static VirtualPet[] generatePets(int amt) {
         VirtualPet[] pets = new VirtualPet[amt];
         for (int i = 0; i < amt; i++) {
-            System.out.printf("Enter the name for pet #%d: ", i + 1);
+            System.out.printf("Enter the name for %s #%d: ", PET_TYPE, i + 1);
             pets[i] = new VirtualPet(scan.nextLine());
+        }
+        return pets;
+    }
+
+    /**
+     * Generate an array of plants from the given amount. (2)(2)(a).
+     * <p>
+     * Prompts user for the name and type of each plant.
+     *
+     * @param amt The valid amount of plants to generate.
+     * @return The array of plants.
+     */
+    private static VirtualPlant[] generatePlants(int amt) {
+        VirtualPlant[] pets = new VirtualPlant[amt];
+        for (int i = 0; i < amt; i++) {
+            System.out.printf("Enter the name for %s #%d: ", PET_TYPE, i + 1);
+            String name = scan.nextLine();
+            System.out.printf("Enter the type for %s #%d: ", PET_TYPE, i + 1);
+            String type = scan.nextLine();
+            pets[i] = new VirtualPlant(name, type);
         }
         return pets;
     }
@@ -85,15 +155,14 @@ public class VirtualPetTester {
      * @return An integer corresponding to a valid menu option.
      */
     private static int promptAction() {
-        int action;
         while (true) {
             System.out.println("\nChoose a number from the following menu:");
             System.out.println("1. Check statuses");
-            System.out.println("2. Feed your virtual pet");
-            System.out.println("3. Play with your virtual pet");
+            System.out.printf("2. %s your virtual %s%n", FEED_TYPE, PET_TYPE);
+            System.out.printf("3. %s with your virtual %s%n", PLAY_TYPE, PET_TYPE);
             System.out.println("4. End program");
             System.out.print(">>> ");
-            action = scan.nextInt();
+            int action = scan.nextInt();
             if (action < 1 || action > 4) {
                 System.out.println("\nInvalid selection. Please enter a valid option.");
                 continue;
@@ -104,16 +173,6 @@ public class VirtualPetTester {
     }
 
     /**
-     * Return pet's stats as a formatted string. (1)(1)(3)(1)(a).
-     *
-     * @param pet The pet instance.
-     * @return A formatted string that represents a pet's energy and happiness.
-     */
-    private static String plainStatus(VirtualPet pet) {
-        return String.format("Energy: %d. Happiness: %d.", pet.getEnergy(), pet.getHappiness());
-    }
-
-    /**
      * Print the statuses of the pets. (1)(1)(3)(1)(b).
      * <p>
      * In addition to the requirement, this method adds the name of the pet at
@@ -121,9 +180,9 @@ public class VirtualPetTester {
      *
      * @param pets The array of pets.
      */
-    private static void printStatus(VirtualPet[] pets) {
+    private static void printAllStatuses(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s%n", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s%n", pet.getName(), pet.plainStatus());
         }
     }
 
@@ -137,9 +196,9 @@ public class VirtualPetTester {
      */
     private static void feedAllPets(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s", pet.getName(), pet.plainStatus());
             pet.feed();
-            System.out.printf("  ->  %s%n", plainStatus(pet));
+            System.out.printf("  ->  %s%n", pet.plainStatus());
         }
     }
 
@@ -153,9 +212,9 @@ public class VirtualPetTester {
      */
     private static void playAllPets(VirtualPet[] pets) {
         for (VirtualPet pet : pets) {
-            System.out.printf("[%s] %s", pet.getName(), plainStatus(pet));
+            System.out.printf("[%s] %s", pet.getName(), pet.plainStatus());
             pet.play();
-            System.out.printf("  ->  %s%n", plainStatus(pet));
+            System.out.printf("  ->  %s%n", pet.plainStatus());
         }
     }
 
@@ -187,16 +246,16 @@ public class VirtualPetTester {
         double baseAvg = (VirtualPet.BASE_ENERGY + VirtualPet.BASE_HAPPINESS) / 2.0;
         double userAvg = getMeanStats(pets);
 
-        System.out.println("Here are your pet's stats.");
-        printStatus(pets);
+        System.out.printf("Here are your %ss' stats.%n", PET_TYPE);
+        printAllStatuses(pets);
 
         if (userAvg < baseAvg) {
-            System.out.print("Please do not buy a pet...");
+            System.out.printf("Please do not buy a %s...", PET_TYPE);
             if (pets.length > 1) {
                 System.out.printf(" let alone %d of them.", pets.length);
             }
         } else {
-            System.out.println("Well done! Your pets seems to be happy on average.");
+            System.out.printf("Well done! Your %ss seems to be happy on average.%n", PET_TYPE);
         }
     }
 }

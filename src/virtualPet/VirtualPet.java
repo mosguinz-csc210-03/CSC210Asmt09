@@ -27,23 +27,27 @@ public class VirtualPet {
     private static final int PLAY_HAPPINESS_DELTA = +20;
     private static final int PLAY_ENERGY_DELTA = -15;
 
-    /* Part (1)(2)(i) */
+    /* (1)(2)(i) */
     private String name;
     private int happiness = BASE_HAPPINESS;
     private int energy = BASE_ENERGY;
 
+    /* (1)(2)(ii) */
     public VirtualPet() {
         this.name = "DEFAULT";
     }
 
+    /* (1)(2)(ii) */
     public VirtualPet(String name) {
         setName(name);
     }
 
+    /* (1)(2)(ii)(a) */
     public String getName() {
         return name;
     }
 
+    /* (1)(2)(ii)(a) */
     public void setName(String name) {
         /* Note that (1)(2)(ii) specifies a limit that is exclusive of 30. */
         if (name.length() >= MAX_NAME_LENGTH) {
@@ -52,24 +56,28 @@ public class VirtualPet {
         this.name = name;
     }
 
+    /* (1)(2)(ii)(b) */
     public int getHappiness() {
         return happiness;
     }
 
+    /* (1)(2)(ii)(b) */
     public void setHappiness(int happiness) {
         this.happiness = happiness;
     }
 
+    /* (1)(2)(ii)(c) */
     public int getEnergy() {
         return energy;
     }
 
+    /* (1)(2)(ii)(c) */
     public void setEnergy(int energy) {
         this.energy = energy;
     }
 
     /**
-     * Feed the pet. Increases happiness and energy.
+     * Feed the pet. Increases happiness and energy. (1)(2)(iii).
      * <p>
      * Pet's {@link #energy} must be strictly less than {@link #MAX_FEED_ENERGY}
      * for the action to be effective.
@@ -83,6 +91,7 @@ public class VirtualPet {
 
     /**
      * Play with the pet. Increases happiness and decreases energy.
+     * (1)(2)(iii).
      * <p>
      * Pet's {@link #energy} must be strictly less than {@link #MAX_PLAY_ENERGY}
      * for the action to be effective.
@@ -92,6 +101,24 @@ public class VirtualPet {
             happiness += PLAY_HAPPINESS_DELTA;
             energy += PLAY_ENERGY_DELTA;
         }
+    }
+
+
+    /**
+     * Return pet's stats as a formatted string. (1)(1)(3)(1)(a) and
+     * (1)(2)(iii)(a).
+     *
+     * @return A formatted string that represents a pet's energy and happiness.
+     */
+    public String plainStatus() {
+        return String.format("Energy: %d. Happiness: %d.", energy, happiness);
+    }
+
+    /**
+     * Print the status of the pet. (1)(1)(3)(1)(b) and (1)(2)(iii)(b).
+     */
+    public void printStatus() {
+        System.out.println(plainStatus());
     }
 
 }
