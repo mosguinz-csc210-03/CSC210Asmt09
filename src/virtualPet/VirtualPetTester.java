@@ -54,7 +54,6 @@ public class VirtualPetTester {
             if (petType == 1) return "pet";
             if (petType == 2) return "plant";
             System.out.println("Invalid type. Must be either [1] or [2].");
-            continue;
         }
     }
 
