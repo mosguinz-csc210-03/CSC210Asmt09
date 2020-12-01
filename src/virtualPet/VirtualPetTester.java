@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class VirtualPetTester {
 
-    public static Scanner scan = new Scanner(System.in);
+    public static final Scanner scan = new Scanner(System.in);
     public static final String PET_TYPE = promptPetType();
 
     public static void main(String[] args) {
