@@ -94,4 +94,21 @@ public class VirtualPet {
         }
     }
 
+
+    /**
+     * Return pet's stats as a formatted string. (1)(1)(3)(1)(a).
+     *
+     * @return A formatted string that represents a pet's energy and happiness.
+     */
+    private String plainStatus() {
+        return String.format("Energy: %d. Happiness: %d.", energy, happiness);
+    }
+
+    /**
+     * Print the status of the pet. (1)(1)(3)(1)(b).
+     */
+    public void printStatus() {
+        System.out.println(plainStatus());
+    }
+
 }
