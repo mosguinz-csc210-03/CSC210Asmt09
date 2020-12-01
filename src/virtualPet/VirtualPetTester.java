@@ -28,18 +28,13 @@ public class VirtualPetTester {
 
         while (true) {
             switch (promptAction()) {
-                case 1:
-                    printAllStatuses(pets);
-                    break;
-                case 3:
-                    feedAllPets(pets);
-                    break;
-                case 2:
-                    playAllPets(pets);
-                    break;
-                case 4:
+                case 1 -> printAllStatuses(pets);
+                case 3 -> feedAllPets(pets);
+                case 2 -> playAllPets(pets);
+                case 4 -> {
                     displaySummary(pets);
                     return;
+                }
             }
         }
     }
