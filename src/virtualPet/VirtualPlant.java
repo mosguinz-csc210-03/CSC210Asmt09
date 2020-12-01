@@ -26,5 +26,18 @@ public class VirtualPlant extends VirtualPet {
         return plantType;
     }
 
-
+    /**
+     * Return plant's stats as a formatted string. (1)(1)(3)(1).
+     * <p>
+     * Clarified in lecture that overriding either {@link
+     * VirtualPet#plainStatus()} or {@link VirtualPet#printStatus()} is
+     * acceptable. Here, we are choosing to override the method returning the
+     * string as it makes more sense to leave the print method as-is.
+     *
+     * @return A formatted string that represents a pet's energy and happiness.
+     */
+    @Override
+    public String plainStatus() {
+        return String.format("%s Plant Type: %s.", super.plainStatus(), plantType);
+    }
 }
