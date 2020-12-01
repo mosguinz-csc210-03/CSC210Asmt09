@@ -54,6 +54,8 @@ public class VirtualPetTester {
 
     /**
      * Prompt user for a pet type. (2)(2)(b).
+     * <p>
+     * This defines the pets' attributes and its action types.
      *
      * @return The string that is the pet type. Either "pet" or "plant".
      */
@@ -66,6 +68,30 @@ public class VirtualPetTester {
             if (petType == 2) return "plant";
             System.out.println("Invalid type. Must be either [1] or [2].");
         }
+    }
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for feeding according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getFeedType() {
+        if (PET_TYPE.equals("pet")) return "Feed";
+        return "Water";
+    }
+
+    /**
+     * Probably overkill since we only have two actions, but it's much neater
+     * this way if we ever need to expand it.
+     *
+     * @return The appropriate action label for playing according to {@link
+     * #PET_TYPE}.
+     */
+    private static String getPlayType() {
+        if (PET_TYPE.equals("pet")) return "Play";
+        return "Talk";
     }
 
     /**
@@ -121,32 +147,6 @@ public class VirtualPetTester {
             pets[i] = new VirtualPlant(name, type);
         }
         return pets;
-    }
-
-
-    /**
-     * Probably overkill since we only have two actions, but it's much neater
-     * this way if we ever need to expand it.
-     *
-     * @return The appropriate action label for feeding according to {@link
-     * #PET_TYPE}.
-     */
-    private static String getFeedType() {
-        if (PET_TYPE.equals("pet")) return "Feed";
-        return "Water";
-    }
-
-
-    /**
-     * Probably overkill since we only have two actions, but it's much neater
-     * this way if we ever need to expand it.
-     *
-     * @return The appropriate action label for playing according to {@link
-     * #PET_TYPE}.
-     */
-    private static String getPlayType() {
-        if (PET_TYPE.equals("pet")) return "Play";
-        return "Talk";
     }
 
     /**
